@@ -2,11 +2,19 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-@app.route('/api-home')
+# Home route
+@app.route('/api-home', methods=['GET'])
 def home():
-    return "Welcome to Krizzia Nicole Obillos' Flask API!"
+    return jsonify({
+        "message": "Welcome to Krizzia Nicole Obillos' Flask API!",
+        "routes": [
+            "/api-home",
+            "/student"
+        ]
+    })
 
-@app.route('/student')
+# Student route
+@app.route('/student', methods=['GET'])
 def get_student():
     return jsonify({
         "name": "Krizzia Nicole Obillos",
@@ -15,4 +23,4 @@ def get_student():
     })
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
